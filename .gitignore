@@ -240,3 +240,4 @@ node_modules/
 crash.log
 crash.*.log
 provider.tf
+.terraform.lock.hcl
