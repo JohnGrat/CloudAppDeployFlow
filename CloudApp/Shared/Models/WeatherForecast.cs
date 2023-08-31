@@ -1,4 +1,4 @@
-namespace CloudApp.Data
+namespace Shared.Models
 {
     public class WeatherForecast
     {

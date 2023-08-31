@@ -1,8 +1,16 @@
-using CloudApp.Data;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Business.Repositories.Default;
+using CloudApp.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// Register the WeatherRepository using the desired configuration
+string cosmosConnectionString = builder.Configuration.GetConnectionString("Database");
+string databaseName = "ToDoList";
+string containerName = "Items";
+builder.Services.AddSingleton<WeatherRepository>(sp =>
+    new WeatherRepository(cosmosConnectionString, databaseName, containerName));
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
