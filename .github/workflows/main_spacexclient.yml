@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'SpaceXclient'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C53794AB3C4A445FBCAE7A321569D3D9 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_28AF0C767E0C48849E08CCCADDE8EE7B }}
           package: .
