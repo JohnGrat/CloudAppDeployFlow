@@ -11,6 +11,7 @@ string containerName = "Items";
 builder.Services.AddSingleton<WeatherRepository>(sp =>
     new WeatherRepository(cosmosConnectionString, databaseName, containerName));
 
+builder.Services.AddSingleton(provider => cosmosConnectionString);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
