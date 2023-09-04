@@ -5,8 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Register the WeatherRepository using the desired configuration
-//string cosmosConnectionString = builder.Configuration.GetConnectionString("Database");
-string cosmosConnectionString = "LOL";
+
+string cosmosConnectionString = builder.Configuration.GetConnectionString("Database");
 string databaseName = "ToDoList";
 string containerName = "Items";
 builder.Services.AddSingleton<WeatherRepository>(sp =>
