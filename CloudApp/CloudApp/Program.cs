@@ -1,4 +1,5 @@
 using Business.Repositories.Default;
+using CloudApp.Data;
 using CloudApp.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Register the WeatherRepository using the desired configuration
 
 string cosmosConnectionString = builder.Configuration.GetConnectionString("Database");
-string databaseName = "ToDoList";
-string containerName = "Items";
+string databaseName = "WeatherDb";
+string containerName = "Forecasts";
 builder.Services.AddSingleton<WeatherRepository>(sp =>
     new WeatherRepository(cosmosConnectionString, databaseName, containerName));
 
@@ -38,4 +39,23 @@ app.UseRouting();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
+SeedCosmosDatabase(cosmosConnectionString).Wait();
+
 app.Run();
+
+
+static async Task SeedCosmosDatabase(string connectionString)
+{
+    try
+    {
+        // Create an instance of the Seed class
+        var seed = new Seed(connectionString);
+
+        // Initialize the Cosmos DB database and container
+        await seed.InitializeAsync();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error seeding Cosmos DB: {ex.Message}");
+    }
+}
