@@ -9,9 +9,9 @@ namespace Business.Repositories.Default
 
         public WeatherRepository(string cosmosConnectionString, string databaseName, string containerName)
         {
-            var client = new CosmosClient(cosmosConnectionString);
-            var database = client.GetDatabase(databaseName);
-            _container = database.GetContainer(containerName);
+            //var client = new CosmosClient(cosmosConnectionString);
+            //var database = client.GetDatabase(databaseName);
+            //_container = database.GetContainer(containerName);
         }
 
         public async Task<WeatherForecast> AddAsync(WeatherForecast entity)
