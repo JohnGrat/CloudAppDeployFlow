@@ -1,7 +1,13 @@
+using Newtonsoft.Json;
+
 namespace Shared.Models
 {
     public class WeatherForecast
     {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+        [JsonProperty(PropertyName = "partitionKey")]
+        public string PartitionKey { get; set; }
         public DateOnly Date { get; set; }
 
         public int TemperatureC { get; set; }
