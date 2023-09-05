@@ -23,7 +23,7 @@ resource "azurerm_linux_web_app" "CloudAppDeployWA" {
 
   connection_string {
     name  = "Database"
-    type  = "DocDb"
+    type  = "Custom"
     value = azurerm_cosmosdb_account.db.connection_strings[0]
   }
   depends_on = [ azurerm_service_plan.ASPcloudAppDeploy, azurerm_cosmosdb_account.db ]
