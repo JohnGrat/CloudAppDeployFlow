@@ -241,3 +241,4 @@ crash.log
 crash.*.log
 provider.tf
 .terraform.lock.hcl
+CloudApp/CloudApp/appsettings.Development.json
