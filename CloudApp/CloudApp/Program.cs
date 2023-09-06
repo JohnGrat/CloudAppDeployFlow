@@ -39,23 +39,7 @@ app.UseRouting();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
-SeedCosmosDatabase(cosmosConnectionString).Wait();
+var seed = new Seed(cosmosConnectionString, databaseName, containerName);
+await seed.InitializeAsync();
 
 app.Run();
-
-
-static async Task SeedCosmosDatabase(string connectionString)
-{
-    try
-    {
-        // Create an instance of the Seed class
-        var seed = new Seed(connectionString);
-
-        // Initialize the Cosmos DB database and container
-        await seed.InitializeAsync();
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error seeding Cosmos DB: {ex.Message}");
-    }
-}

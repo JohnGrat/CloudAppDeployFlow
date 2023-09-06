@@ -22,43 +22,22 @@ resource "azurerm_cosmosdb_account" "db" {
 
 
 resource "azurerm_cosmosdb_sql_database" "example" {
-  name                = "example-acsd"
+  name                = "WeatherDb"
   resource_group_name = local.RGname
   account_name        = azurerm_cosmosdb_account.db.name
   
-
+  
   depends_on = [ azurerm_cosmosdb_account.db ]
 }
 
 resource "azurerm_cosmosdb_sql_container" "example" {
-  name                  = "example-container"
+  name                  = "Forecasts"
   resource_group_name   = local.RGname
   account_name          = azurerm_cosmosdb_account.db.name
   database_name         = azurerm_cosmosdb_sql_database.example.name
-  partition_key_path    = "/definition/id"
+  partition_key_path    = "/partitionKey"
   partition_key_version = 1
   throughput            = 400
-  
-
-  indexing_policy {
-    indexing_mode = "consistent"
-
-    included_path {
-      path = "/*"
-    }
-
-    included_path {
-      path = "/included/?"
-    }
-
-    excluded_path {
-      path = "/excluded/?"
-    }
-  }
-
-  unique_key {
-    paths = ["/definition/idlong", "/definition/idshort"]
-  }
 
   depends_on = [ azurerm_cosmosdb_sql_database.example ]
 }

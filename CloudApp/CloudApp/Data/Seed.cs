@@ -13,11 +13,11 @@ namespace CloudApp.Data
         private readonly Database database;
         private readonly Container container;
 
-        public Seed(string connectionString)
+        public Seed(string connectionString, string database, string container)
         {
             this.cosmosClient = new CosmosClient(connectionString, new CosmosClientOptions { ApplicationName = "CosmosDBDotnetQuickstart" });
-            this.database = this.cosmosClient.GetDatabase("WeatherDb");
-            this.container = this.database.GetContainer("Forecasts");
+            this.database = this.cosmosClient.GetDatabase(database);
+            this.container = this.database.GetContainer(container);
         }
 
         public async Task InitializeAsync()
