@@ -22,36 +22,36 @@ namespace CloudApp.Data
 
         public async Task InitializeAsync()
         {
-            await CreateDatabaseAsync();
-            await CreateContainerAsync();
+            //await CreateDatabaseAsync();
+            //await CreateContainerAsync();
             await AddWeatherForecastToContainerAsync();
         }
 
-        public async Task CreateDatabaseAsync()
-        {
-            try
-            {
-                await this.cosmosClient.CreateDatabaseIfNotExistsAsync(database.Id);
-                Console.WriteLine($"Created Database: {this.database.Id}");
-            }
-            catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.Conflict)
-            {
-                Console.WriteLine($"Database {this.database.Id} already exists");
-            }
-        }
+        //public async Task CreateDatabaseAsync()
+        //{
+        //    try
+        //    {
+        //        await this.cosmosClient.CreateDatabaseIfNotExistsAsync(database.Id);
+        //        Console.WriteLine($"Created Database: {this.database.Id}");
+        //    }
+        //    catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.Conflict)
+        //    {
+        //        Console.WriteLine($"Database {this.database.Id} already exists");
+        //    }
+        //}
 
-        public async Task CreateContainerAsync()
-        {
-            try
-            {
-                await this.database.CreateContainerIfNotExistsAsync(this.container.Id, "/partitionKey");
-                Console.WriteLine($"Created Container: {this.container.Id}");
-            }
-            catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.Conflict)
-            {
-                Console.WriteLine($"Container {this.container.Id} already exists");
-            }
-        }
+        //public async Task CreateContainerAsync()
+        //{
+        //    try
+        //    {
+        //        await this.database.CreateContainerIfNotExistsAsync(this.container.Id, "/partitionKey");
+        //        Console.WriteLine($"Created Container: {this.container.Id}");
+        //    }
+        //    catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.Conflict)
+        //    {
+        //        Console.WriteLine($"Container {this.container.Id} already exists");
+        //    }
+        //}
 
 
         private async Task AddWeatherForecastToContainerAsync()
